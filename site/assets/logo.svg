@@ -1,0 +1,38 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradiente Principal Hiper-Contraste -->
+    <linearGradient id="converticaGradient" x1="8" y1="56" x2="56" y2="8" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00F2FE"/>
+      <stop offset="45%" stop-color="#4FACFE"/>
+      <stop offset="100%" stop-color="#7B2CBF"/>
+    </linearGradient>
+
+    <!-- Gradiente Secundário de Luz Neon -->
+    <linearGradient id="accentGradient" x1="16" y1="16" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#00F2FE" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#4FACFE" stop-opacity="0.2"/>
+    </linearGradient>
+
+    <!-- Filtro de Resplendor / Glow -->
+    <filter id="neonGlow" x="-25%" y="-25%" width="150%" height="150%" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Faceta Base Inferior: Estabilidade e Código Semântico < -->
+  <path d="M12 48L24 16L34 26L20 54L12 48Z" fill="url(#converticaGradient)" opacity="0.9"/>
+
+  <!-- Faceta Ascendente: Vértice de Escala e Propulsão > -->
+  <path d="M26 34L40 8L52 14L38 46L26 34Z" fill="url(#converticaGradient)" filter="url(#neonGlow)"/>
+
+  <!-- Prisma de Convergência Central (O Ponto de Conversão) -->
+  <polygon points="34,26 46,26 40,38 28,38" fill="url(#accentGradient)"/>
+
+  <!-- Linha de Precisão de Alta Performance -->
+  <circle cx="40" cy="8" r="2.5" fill="#00F2FE" filter="url(#neonGlow)"/>
+</svg>

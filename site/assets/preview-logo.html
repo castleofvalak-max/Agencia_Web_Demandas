@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showcase de Identidade Visual & Isotipos — CONVÉRTICA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #08090C;
+      --bg-card: rgba(18, 20, 29, 0.75);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --text-primary: #F1F5F9;
+      --text-secondary: #94A3B8;
+      --accent-cyan: #00F2FE;
+      --accent-blue: #4FACFE;
+      --accent-violet: #7B2CBF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      color: var(--accent-cyan);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    p.subtitle {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Grid de Opções */
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 28px;
+      margin-bottom: 56px;
+    }
+
+    .concept-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .concept-card:hover {
+      border-color: rgba(0, 242, 254, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px rgba(0, 242, 254, 0.15);
+    }
+
+    .concept-card.featured {
+      border-color: rgba(0, 242, 254, 0.4);
+      background: linear-gradient(180deg, rgba(18, 24, 38, 0.85) 0%, rgba(12, 14, 22, 0.95) 100%);
+    }
+
+    .card-tag {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.12);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .preview-box {
+      background: #040507;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-box::before {
+      content: '';
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .concept-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .concept-desc {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .specs-list {
+      list-style: none;
+      font-size: 13px;
+      color: #CBD5E1;
+      margin-bottom: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 16px;
+    }
+
+    .specs-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .specs-list li span.bullet {
+      color: var(--accent-cyan);
+    }
+
+    /* Seção de Aplicações Reais */
+    .applications-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .mockup-header-bar {
+      background: rgba(10, 12, 18, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .mockup-nav {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      color: #94A3B8;
+    }
+
+    .mockup-btn {
+      background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
+      color: #040507;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Comparativo de Fundos */
+    .bg-test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .bg-test-card {
+      border-radius: 12px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .bg-test-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      opacity: 0.7;
+    }
+
+    .bg-dark-obsidian { background: #08090C; color: #fff; }
+    .bg-pure-black { background: #000000; color: #fff; }
+    .bg-slate { background: #1E293B; color: #fff; }
+    .bg-light { background: #F8FAFC; color: #0F172A; }
+
+    /* SVG Hover Animation */
+    .interactive-svg {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .interactive-svg:hover {
+      transform: scale(1.1) rotate(2deg);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">Laboratório de Design & Identidade Visual</div>
+      <h1>Estudo dos Isotipos Vetoriais em SVG</h1>
+      <p class="subtitle">Concebidos sob a matemática de 45º, inspirados em alta conversão, código limpo e escala empresarial. Avalie os 3 conceitos abaixo.</p>
+    </header>
+
+    <!-- GRID DE CONCEITOS -->
+    <div class="concepts-grid">
+
+      <!-- CONCEITO 1: RECOMENDADO -->
+      <div class="concept-card featured">
+        <div class="card-tag">Opção 1 • Recomendada</div>
+        <div class="preview-box">
+          <svg class="interactive-svg" width="96" height="96" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="c1Grad" x1="8" y1="56" x2="56" y2="8" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00F2FE"/>
+                <stop offset="50%" stop-color="#4FACFE"/>
+                <stop offset="100%" stop-color="#7B2CBF"/>
+              </linearGradient>
+              <filter id="c1Glow" x="-25%" y="-25%" width="150%" height="150%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <!-- Faceta Base < -->
+            <path d="M12 48L24 16L34 26L20 54L12 48Z" fill="url(#c1Grad)" opacity="0.85"/>
+            <!-- Faceta Ascendente > -->
+            <path d="M26 34L40 8L52 14L38 46L26 34Z" fill="url(#c1Grad)" filter="url(#c1Glow)"/>
+            <!-- Convergência Central -->
+            <polygon points="34,26 46,26 40,38 28,38" fill="#FFFFFF" opacity="0.95"/>
+            <!-- Vértice Topo -->
+            <circle cx="40" cy="8" r="2.5" fill="#00F2FE" filter="url(#c1Glow)"/>
+          </svg>
+        </div>
+        <h3 class="concept-title">CONVÉRTICA: "O Vértice de Expansão"</h3>
+        <p class="concept-desc">Fusão paramétrica das tags de código semântico <code>&lt;</code> e <code>/&gt;</code> que se unem formando uma seta ascendente contínua. Simboliza que a tecnologia pura é o veículo de crescimento da empresa.</p>
+        <ul class="specs-list">
+          <li><span class="bullet">✦</span> <strong>Semiótica:</strong> Ascensão em 45º + Ponto de conversão central</li>
+          <li><span class="bullet">✦</span> <strong>Cores:</strong> Neon Cyan (#00F2FE) para Deep Violet (#7B2CBF)</li>
+          <li><span class="bullet">✦</span> <strong>Aplicação Ideal:</strong> Favicon, Header de alto luxo e app icon</li>
+        </ul>
+      </div>
+
+      <!-- CONCEITO 2: NEXUS DEMAND -->
+      <div class="concept-card">
+        <div class="card-tag">Opção 2</div>
+        <div class="preview-box">
+          <svg class="interactive-svg" width="96" height="96" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="c2Grad1" x1="12" y1="52" x2="52" y2="12" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00F2FE"/>
+                <stop offset="100%" stop-color="#4FACFE"/>
+              </linearGradient>
+              <linearGradient id="c2Grad2" x1="20" y1="20" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#7B2CBF"/>
+                <stop offset="100%" stop-color="#00F2FE"/>
+              </linearGradient>
+            </defs>
+            <!-- Hexágono Isométrico / Prisma de Performance -->
+            <polygon points="32,8 54,20 54,44 32,56 10,44 10,20" stroke="rgba(255,255,255,0.15)" stroke-width="2" fill="none"/>
+            <polygon points="32,8 54,20 32,32 10,20" fill="url(#c2Grad1)" opacity="0.9"/>
+            <polygon points="32,32 54,20 54,44 32,56" fill="url(#c2Grad2)" opacity="0.75"/>
+            <!-- Seta de Tração Interna -->
+            <path d="M24 38L32 24L40 38L32 34Z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <h3 class="concept-title">NEXUS DEMAND: "O Prisma de Escala"</h3>
+        <p class="concept-desc">Estrutura prismática isométrica hexagonal inspirada em computação de alto desempenho, com vetor de tração interno. Focado em autoridade corporativa B2B e estabilidade sistêmica.</p>
+        <ul class="specs-list">
+          <li><span class="bullet">✦</span> <strong>Semiótica:</strong> Solidez estrutural + Vetor de tração interna</li>
+          <li><span class="bullet">✦</span> <strong>Cores:</strong> Electric Blue com refração violeta profunda</li>
+          <li><span class="bullet">✦</span> <strong>Aplicação Ideal:</strong> Empresas de tecnologia, SaaS e B2B</li>
+        </ul>
+      </div>
+
+      <!-- CONCEITO 3: VÉRTICE LABS -->
+      <div class="concept-card">
+        <div class="card-tag">Opção 3</div>
+        <div class="preview-box">
+          <svg class="interactive-svg" width="96" height="96" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="c3Grad" x1="10" y1="54" x2="54" y2="10" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00F2FE"/>
+                <stop offset="50%" stop-color="#7B2CBF"/>
+                <stop offset="100%" stop-color="#FFFFFF"/>
+              </linearGradient>
+            </defs>
+            <!-- Monograma Arquitetônico C em 45º -->
+            <path d="M48 18L32 8L16 18L16 46L32 56L48 46L40 41L32 46L24 41L24 23L32 18L40 23L48 18Z" fill="url(#c3Grad)"/>
+            <!-- Raio de Propulsão -->
+            <circle cx="32" cy="32" r="5" fill="#00F2FE"/>
+          </svg>
+        </div>
+        <h3 class="concept-title">VÉRTICE LABS: "Monograma Arquitetônico"</h3>
+        <p class="concept-desc">Monograma escultural com cortes geométricos afiados, unindo a inicial da marca a uma câmara de convergência de feixe de luz. Voltado para posicionamento de luxo e estúdio boutique.</p>
+        <ul class="specs-list">
+          <li><span class="bullet">✦</span> <strong>Semiótica:</strong> Monograma 'C/V' esculpido em código puro</li>
+          <li><span class="bullet">✦</span> <strong>Cores:</strong> Gradiente espectral de alto contraste</li>
+          <li><span class="bullet">✦</span> <strong>Aplicação Ideal:</strong> Marcas exclusivas e de alto valor agregado</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- SEÇÃO DE SIMULAÇÃO EM NAVBAR REAL -->
+    <div class="applications-section">
+      <div class="section-header">
+        <h2>Simulação de Aplicação no Header Oficial</h2>
+        <p>Veja como o logo horizontal completo (Isotipo + Wordmark + Tagline) se comporta em uma barra de navegação real da página:</p>
+      </div>
+
+      <div class="mockup-header-bar">
+        <!-- Logo Completo Embutido -->
+        <svg width="240" height="52" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mockGrad" x1="8" y1="56" x2="56" y2="8" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F2FE"/>
+              <stop offset="45%" stop-color="#4FACFE"/>
+              <stop offset="100%" stop-color="#7B2CBF"/>
+            </linearGradient>
+            <linearGradient id="mockTextGrad" x1="160" y1="36" x2="260" y2="20" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F2FE"/>
+              <stop offset="100%" stop-color="#4FACFE"/>
+            </linearGradient>
+            <filter id="mockGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <g transform="translate(4, 2)">
+            <path d="M10 44L22 14L32 24L18 50L10 44Z" fill="url(#mockGrad)" opacity="0.9"/>
+            <path d="M24 32L38 8L48 14L36 44L24 32Z" fill="url(#mockGrad)" filter="url(#mockGlow)"/>
+            <polygon points="32,24 43,24 38,36 26,36" fill="#FFFFFF" opacity="0.9"/>
+            <circle cx="38" cy="8" r="2.2" fill="#00F2FE"/>
+          </g>
+          <text x="68" y="36" font-family="'Syne', sans-serif" font-size="24" font-weight="800" letter-spacing="2.5" fill="#FFFFFF">CONV<tspan fill="url(#mockTextGrad)">É</tspan>RTICA</text>
+          <text x="69" y="50" font-family="'Space Mono', monospace" font-size="7.5" font-weight="600" letter-spacing="3.2" fill="#8F9CAE">WEB &amp; DEMAND ENGINE</text>
+        </svg>
+
+        <div class="mockup-nav">
+          <span>O Método</span>
+          <span>Comparativo</span>
+          <span>Serviços</span>
+          <span>Casos</span>
+          <span>FAQ</span>
+        </div>
+
+        <button class="mockup-btn">Solicitar Diagnóstico ➔</button>
+      </div>
+
+      <!-- Teste de Contraste em Fundos Diversos -->
+      <h3 style="font-size: 16px; margin: 28px 0 12px; font-weight: 600;">Teste de Legibilidade & Contraste em Diferentes Fundos:</h3>
+      <div class="bg-test-grid">
+        <div class="bg-test-card bg-dark-obsidian">
+          <img src="logo.svg" width="44" height="44" alt="Obsidian Dark">
+          <span class="bg-test-label">Obsidian Dark (#08090C)</span>
+        </div>
+        <div class="bg-test-card bg-pure-black">
+          <img src="logo.svg" width="44" height="44" alt="Pure OLED">
+          <span class="bg-test-label">Pure OLED Black (#000000)</span>
+        </div>
+        <div class="bg-test-card bg-slate">
+          <img src="logo.svg" width="44" height="44" alt="Slate Blue">
+          <span class="bg-test-label">Slate Container (#1E293B)</span>
+        </div>
+        <div class="bg-test-card bg-light">
+          <!-- Versão para fundo claro com filtro sutil -->
+          <img src="logo.svg" width="44" height="44" alt="Light Studio" style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));">
+          <span class="bg-test-label" style="color: #0F172A;">Light Mode (#F8FAFC)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
