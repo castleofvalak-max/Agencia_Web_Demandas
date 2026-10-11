@@ -17,7 +17,7 @@
 
 ## 2. Esteira Operacional em 8 Passos
 - [x] **Passo 1: Issue & Branch** — Cadastro da Issue #1 e branch isolada `feat/issue-1-site-institucional-agencia` sincronizadas no GitHub.
-- [ ] **Passo 2: Concepção & Copywriting** — Estrutura persuasiva e narrativa institucional (`copywriting`).
+- [x] **Passo 2: Concepção & Copywriting** — Estrutura persuasiva e narrativa institucional concluída em `02_planejamento/COPYWRITING_ESTRATEGICO.md` (`copywriting`).
 - [ ] **Passo 3: Engenharia Reversa Visual & Técnica** — Extração técnica com `/reverse-ds` + REA e marcação HTML/CSS (`img-to-html`).
 - [ ] **Passo 4: Polimento Visual & Acessibilidade** — Refinamento estético, contraste WCAG AA e touch targets (`impeccable`).
 - [ ] **Passo 5: Coreografia de Movimento** — Lenis Smooth Scroll e GSAP ScrollTrigger a 60-120 FPS (`motion-lab`).
