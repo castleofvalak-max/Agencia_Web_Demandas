@@ -1,0 +1,13 @@
+{
+  "name": "agencia-web-demandas-convertica",
+  "version": "1.0.0",
+  "description": "CONVÉRTICA — Engenharia Web & Máquinas de Demanda para Empresas",
+  "scripts": {
+    "dev": "vite site --port 3000 --host",
+    "build": "vite build site",
+    "preview": "vite preview site --port 3000"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21"
+  }
+}

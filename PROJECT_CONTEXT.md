@@ -20,7 +20,7 @@
 - [x] **Passo 2: Concepção & Copywriting** — Estrutura persuasiva e narrativa institucional concluída em `02_planejamento/COPYWRITING_ESTRATEGICO.md` (`copywriting`).
 - [x] **Passo 3: Engenharia Reversa Visual & Técnica** — Extração técnica com `/reverse-ds` + REA e marcação HTML/CSS (`img-to-html`). Concluído em `03_engenharia_reversa/DESIGN_SYSTEM.md`, `site/css/style.css` e `site/index.html`.
 - [x] **Passo 4: Polimento Visual & Acessibilidade** — Refinamento estético, contraste WCAG AA rigoroso, logotipo nativo SVG na Navbar/Footer, touch targets >= 44x44px e copy concisa com letras espaçadas (`impeccable`).
-- [ ] **Passo 5: Coreografia de Movimento** — Lenis Smooth Scroll e GSAP ScrollTrigger a 60-120 FPS (`motion-lab`).
+- [x] **Passo 5: Coreografia de Movimento** — Lenis Smooth Scroll e GSAP ScrollTrigger a 60-120 FPS implementados em `site/js/motion.js` e bibliotecas locais em `site/js/vendor/` (`motion-lab`). Servidor de visualização em tempo real configurado via Vite (`npm run dev`).
 - [ ] **Passo 6: Auditoria de DS & UX** — Confronto rígido contra o Design System com `/audit-spec` (`ui-ux-pro-max`).
 - [ ] **Passo 7: Gatekeeper de Qualidade & Certificação** — Pesquisa local SEO e varredura com `/quality-gate`.
 - [ ] **Passo 8: Validação & Pull Request** — Testes finais, Git push e abertura formal de PR para a `main`.
@@ -36,5 +36,5 @@
 
 ## 4. Notas Técnicas & Próximas Ações
 * **Repositório em Nuvem:** [https://github.com/castleofvalak-max/Agencia_Web_Demandas](https://github.com/castleofvalak-max/Agencia_Web_Demandas)
-* **Design & Acessibilidade:** Logotipo vetorial nativo embutido, contraste WCAG AA auditado e touch targets ergonômicos >= 44x44px.
-* **Próxima Etapa Mandatória:** **Passo 5 (Coreografia de Movimento - `motion-lab`)** — Implementação do Lenis Smooth Scroll, animações de entrada GSAP com split de caracteres, curvas suaves Noomo e microinterações a 60–120 FPS.
+* **Servidor Local Ativo:** `http://localhost:3000/` (Vite) com Hot Reload e Lenis + GSAP operando a 60–120 FPS.
+* **Próxima Etapa Mandatória:** **Passo 6 (Auditoria de DS & UX - `/audit-spec` / `ui-ux-pro-max`)** — Confronto analítico milimétrico entre o Design System extraído da Noomo e a interface desenvolvida para a CONVÉRTICA.
