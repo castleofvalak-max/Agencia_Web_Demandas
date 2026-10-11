@@ -9,13 +9,14 @@
 * **Empresa / Cliente:** Agencia_Web_Demandas
 * **Nicho / Segmento:** Agência Especializada em Sites de Alta Conversão e Demanda para Empresas
 * **Localização Principal:** SuaCidade - UF
+* **Repositório GitHub:** [castleofvalak-max/Agencia_Web_Demandas](https://github.com/castleofvalak-max/Agencia_Web_Demandas)
 * **Branch Padrão de Produção:** `main`
 * **Branch de Trabalho Ativa:** `feat/issue-1-site-institucional-agencia`
 
 ---
 
 ## 2. Esteira Operacional em 8 Passos
-- [x] **Passo 1: Issue & Branch** — Cadastro da Issue #1 e branch isolada `feat/issue-1-site-institucional-agencia`.
+- [x] **Passo 1: Issue & Branch** — Cadastro da Issue #1 e branch isolada `feat/issue-1-site-institucional-agencia` sincronizadas no GitHub.
 - [ ] **Passo 2: Concepção & Copywriting** — Estrutura persuasiva e narrativa institucional (`copywriting`).
 - [ ] **Passo 3: Engenharia Reversa Visual & Técnica** — Extração técnica com `/reverse-ds` + REA e marcação HTML/CSS (`img-to-html`).
 - [ ] **Passo 4: Polimento Visual & Acessibilidade** — Refinamento estético, contraste WCAG AA e touch targets (`impeccable`).
@@ -27,12 +28,13 @@
 ---
 
 ## 3. Matriz de Tarefas Ativas no GitHub
-| Issue | Tipo | Título | Status | Branch |
-| :---: | :---: | :--- | :---: | :--- |
-| **#1** | `[Nova função]` | Concepção e Construção da Landing Page Institucional de Alta Conversão | Em Progresso | `feat/issue-1-site-institucional-agencia` |
+| Issue | Tipo | Título | Status | Branch | Link GitHub |
+| :---: | :---: | :--- | :---: | :--- | :--- |
+| **#1** | `[Nova função]` | Concepção e Construção da Landing Page Institucional de Alta Conversão | Em Progresso | `feat/issue-1-site-institucional-agencia` | [Ver Issue #1](https://github.com/castleofvalak-max/Agencia_Web_Demandas/issues/1) |
 
 ---
 
 ## 4. Notas Técnicas & Próximas Ações
+* **Repositório em Nuvem:** [https://github.com/castleofvalak-max/Agencia_Web_Demandas](https://github.com/castleofvalak-max/Agencia_Web_Demandas)
 * **Base de Referência:** Arquivo HAR disponível em `03_engenharia_reversa/storytelling.noomoagency.com.har`.
 * **Próxima Etapa Mandatória:** **Passo 2 (Copywriting)** — Criação da narrativa estratégica, proposta de valor irresistível e arquitetura persuasiva de seções.
