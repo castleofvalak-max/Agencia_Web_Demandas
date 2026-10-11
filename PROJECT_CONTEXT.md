@@ -18,7 +18,7 @@
 ## 2. Esteira Operacional em 8 Passos
 - [x] **Passo 1: Issue & Branch** — Cadastro da Issue #1 e branch isolada `feat/issue-1-site-institucional-agencia` sincronizadas no GitHub.
 - [x] **Passo 2: Concepção & Copywriting** — Estrutura persuasiva e narrativa institucional concluída em `02_planejamento/COPYWRITING_ESTRATEGICO.md` (`copywriting`).
-- [ ] **Passo 3: Engenharia Reversa Visual & Técnica** — Extração técnica com `/reverse-ds` + REA e marcação HTML/CSS (`img-to-html`).
+- [x] **Passo 3: Engenharia Reversa Visual & Técnica** — Extração técnica com `/reverse-ds` + REA e marcação HTML/CSS (`img-to-html`). Concluído em `03_engenharia_reversa/DESIGN_SYSTEM.md`, `site/css/style.css` e `site/index.html`.
 - [ ] **Passo 4: Polimento Visual & Acessibilidade** — Refinamento estético, contraste WCAG AA e touch targets (`impeccable`).
 - [ ] **Passo 5: Coreografia de Movimento** — Lenis Smooth Scroll e GSAP ScrollTrigger a 60-120 FPS (`motion-lab`).
 - [ ] **Passo 6: Auditoria de DS & UX** — Confronto rígido contra o Design System com `/audit-spec` (`ui-ux-pro-max`).
@@ -36,5 +36,5 @@
 
 ## 4. Notas Técnicas & Próximas Ações
 * **Repositório em Nuvem:** [https://github.com/castleofvalak-max/Agencia_Web_Demandas](https://github.com/castleofvalak-max/Agencia_Web_Demandas)
-* **Base de Referência:** Arquivo HAR disponível em `03_engenharia_reversa/storytelling.noomoagency.com.har`.
-* **Próxima Etapa Mandatória:** **Passo 2 (Copywriting)** — Criação da narrativa estratégica, proposta de valor irresistível e arquitetura persuasiva de seções.
+* **Base de Referência:** Noomo Agency (`https://storytelling.noomoagency.com/`). Tokens extraídos e documentados em `03_engenharia_reversa/DESIGN_SYSTEM.md`.
+* **Próxima Etapa Mandatória:** **Passo 4 (Polimento Visual & Acessibilidade - `impeccable`)** — Refinamento estético, microinterações, verificação de contraste WCAG AA e adequação ergonômica em mobile e desktop.
