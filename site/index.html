@@ -2,470 +2,389 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CONVÉRTICA — Engenharia Web &amp; Máquinas de Demanda para Empresas</title>
-  <meta name="description" content="Construímos plataformas e landing pages de alta conversão para empresas que exigem autoridade, velocidade sub-segundo e novos clientes todos os dias.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+  <title>CONVÉRTICA | O poder da alta conversão</title>
+  <meta name="description" content="Uma experiência digital cinematográfica em 3D explorando os princípios de engenharia web de alta conversão e demanda para empresas.">
   <meta name="theme-color" content="#040814">
 
-  <!-- Open Graph / Meta Compartilhamento -->
-  <meta property="og:title" content="CONVÉRTICA — Engenharia Web &amp; Máquinas de Demanda">
-  <meta property="og:description" content="Seu site deve ser seu principal motor de vendas. Páginas ultrarrápidas com neuroarquitetura de conversão comercial.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="CONVÉRTICA | O poder da alta conversão">
+  <meta property="og:description" content="Engenharia web de alta performance. Descubra os princípios da conversão digital para sua empresa.">
   <meta property="og:type" content="website">
 
-  <!-- Folha de Estilos Oficial -->
+  <!-- Estilos Oficiais Reversos da Noomo Agency -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <!-- ========================================================================
-       1. HEADER FIXO GLASSMORPHISM COM LOGOTIPO NATIVO VETORIAL
+       1. CENÁRIO THREE.JS (CANVAS 3D EM FULLSCREEN FIXADO)
        ======================================================================== -->
-  <header class="header-glass">
-    <div class="container nav-content">
+  <div class="fixed inset-0 pointer-events-none" style="z-index: 1;">
+    <canvas id="webgl-canvas"></canvas>
+  </div>
+
+  <!-- ========================================================================
+       2. CURSOR LIQUID GLASS INTERATIVO (NOOMO REVERSE DESIGN)
+       ======================================================================== -->
+  <div class="liquid-glass-root" id="liquidGlassCursor">
+    <div class="wrapper">
+      <div class="inner-border"></div>
+      <div class="star">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.0625 17.6094H7.54688V12.5781H10.0625V17.6094ZM7.54688 10.0625V12.5781H5.03125V10.0625H7.54688ZM12.5781 12.5781H10.0625V10.0625H12.5781V12.5781ZM5.03125 10.0625H0V7.54688H5.03125V10.0625ZM17.6094 10.0625H12.5781V7.54688H17.6094V10.0625ZM7.54688 7.54688H5.03125V5.03125H7.54688V7.54688ZM12.5781 7.54688H10.0625V5.03125H12.5781V7.54688ZM10.0625 5.03125H7.54688V0H10.0625V5.03125Z" fill="white"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       3. HEADER FIXO MINIMALISTA COM LOGOTIPO NATIVO
+       ======================================================================== -->
+  <header>
+    <div class="header-container">
       
-      <!-- LOGOTIPO NATIVO DIRETO NA NAVBAR (SEM IMAGEM EXTERNA) -->
-      <a href="#" class="brand-logo" aria-label="CONVÉRTICA — Início">
-        <span class="brand-icon" aria-hidden="true">
+      <!-- Logotipo Vetorial Nativo CONVÉRTICA -->
+      <a href="#" class="logo-link" aria-label="CONVÉRTICA — Ir para o topo">
+        <div class="logo-icon">
           <svg width="38" height="38" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="nav_c_grad" x1="14" y1="58" x2="52" y2="6" gradientUnits="userSpaceOnUse">
+              <linearGradient id="header_c_grad" x1="14" y1="58" x2="52" y2="6" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stop-color="#00F2FE"/>
                 <stop offset="50%" stop-color="#4FACFE"/>
                 <stop offset="100%" stop-color="#8B5CF6"/>
               </linearGradient>
-              <filter id="nav_c_glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="2.5" result="blur"/>
-                <feMerge>
-                  <feMergeNode in="blur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
             </defs>
             <path d="M50 18L32 6L14 17V47L32 58L50 47L42 42L32 48L22 42V22L32 16L42 22L50 18Z" 
-                  fill="url(#nav_c_grad)" 
-                  filter="url(#nav_c_glow)"/>
+                  fill="url(#header_c_grad)"/>
             <circle cx="32" cy="32" r="4.5" fill="#FFFFFF" opacity="0.95"/>
             <circle cx="32" cy="32" r="2" fill="#00F2FE"/>
           </svg>
-        </span>
-        <span class="brand-text">
-          <span class="brand-name">CONV<span class="brand-accent">É</span>RTICA</span>
-          <span class="brand-tag">WEB &amp; DEMAND ENGINE</span>
-        </span>
+        </div>
+        <div class="logo-text">
+          <div class="logo-title">CONV<span>É</span>RTICA</div>
+          <div class="logo-subtitle">DEMAND &amp; WEB ENGINE</div>
+        </div>
       </a>
 
-      <!-- Navegação Principal com Touch Targets >= 44x44px -->
-      <nav aria-label="Navegação Principal">
-        <ul class="nav-links">
-          <li><a href="#comparativo" class="nav-link">Comparativo</a></li>
-          <li><a href="#metodo" class="nav-link">O Método</a></li>
-          <li><a href="#solucoes" class="nav-link">Soluções</a></li>
-          <li><a href="#resultados" class="nav-link">Resultados</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
-        </ul>
+      <!-- Menu de Ações Minimalista -->
+      <nav class="nav-menu" aria-label="Navegação">
+        <a href="#metodo" class="simple-button" id="btnNavMetodo">
+          Método <span></span>
+        </a>
+        <a href="#pilares" class="simple-button" id="btnNavPilares">
+          Pilares <span></span>
+        </a>
+        <button type="button" class="simple-button cta-highlight" id="btnOpenModalHeader">
+          Diagnóstico ➔ <span></span>
+        </button>
       </nav>
 
-      <a href="#diagnostico" class="btn-primary" id="headerCtaBtn">
-        Diagnóstico Gratuito ➔
-      </a>
     </div>
   </header>
 
-  <main id="main-content">
-
-    <!-- ========================================================================
-         2. HERO SECTION — COPY CONCISA, MAGNÉTICA E COM LETRAS ESPAÇADAS
-         ======================================================================== -->
-    <section class="hero-section" id="hero">
-      <div class="container">
-        
-        <div class="badge-eyebrow">
-          <span class="live-dot" aria-hidden="true"></span>
-          Engenharia Digital &amp; Tração Comercial
-        </div>
-
-        <h1 class="hero-title">
-          Seu site deve ser uma <span class="editorial-italic">máquina de novos clientes</span>, não um folheto digital esquecido.
-        </h1>
-
-        <p class="hero-subtitle">
-          Projetamos interfaces ultrarrápidas com neuroarquitetura de vendas. Transformamos tráfego em reuniões qualificadas e receita previsível.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#diagnostico" class="btn-primary">
-            Solicitar Diagnóstico Comercial ➔
-          </a>
-          <a href="#comparativo" class="btn-secondary">
-            Ver Comparativo de Impacto
-          </a>
-        </div>
-
-        <div class="micro-proofs">
-          <div class="proof-item">
-            <span class="proof-icon">⚡</span>
-            <span>Carregamento em 0.4s</span>
-          </div>
-          <div class="proof-item">
-            <span class="proof-icon">📈</span>
-            <span>+380% em Demandas</span>
-          </div>
-          <div class="proof-item">
-            <span class="proof-icon">🛡️</span>
-            <span>Código Nativo Sem Bloatware</span>
-          </div>
-        </div>
-
+  <!-- ========================================================================
+       4. BOTÕES E CONTROLES DE AMBIÊNCIA (EQUALIZADOR & EXPLORE PILL)
+       ======================================================================== -->
+  <!-- Botão de Áudio Equalizador -->
+  <div class="sound-button-root">
+    <div class="sound-button" id="soundBtn" title="Ativar Áudio Imersivo" aria-label="Alternar Som">
+      <div class="sound-lines">
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+        <div class="line line-3"></div>
+        <div class="line line-4"></div>
+        <div class="line line-5"></div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- ========================================================================
-         3. PAINEL DE IMPACTO & MÉTRICAS
-         ======================================================================== -->
-    <section class="metrics-section" id="metricas">
-      <div class="container">
-        <div class="metrics-grid">
-          
-          <div class="metric-card">
-            <div class="metric-value">0.4s</div>
-            <div class="metric-label">Carregamento Instantâneo (Core Web Vitals)</div>
-          </div>
+  <!-- Indicador Central Scroll to explore -->
+  <div class="scroll-explore" id="scrollExplore">
+    <span>Scroll to explore</span>
+    <div class="scroll-explore-line"></div>
+  </div>
 
-          <div class="metric-card">
-            <div class="metric-value">+380%</div>
-            <div class="metric-label">Aumento Médio em Demandas e Cotações</div>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-value">98%</div>
-            <div class="metric-label">Retenção de Visitantes nos Primeiros 5 Segundos</div>
-          </div>
-
-          <div class="metric-card">
-            <div class="metric-value">100%</div>
-            <div class="metric-label">Código Nativo Puro Sem Plugins Vulneráveis</div>
-          </div>
-
-        </div>
+  <!-- Botão Explore Pill (Inferior Direito Noomo) -->
+  <div class="release-spirit-root">
+    <button type="button" class="release-spirit" id="btnOpenModalBottom" aria-label="Solicitar Diagnóstico">
+      <div class="icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
       </div>
-    </section>
-
-    <!-- ========================================================================
-         4. MATRIZ DE CONFRONTO: CUSTO VS. FATURAMENTO
-         ======================================================================== -->
-    <section class="comparison-section" id="comparativo">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="badge-eyebrow">Diagnóstico Comparativo</div>
-          <h2 class="section-title">Site Convencional vs. <span class="editorial-italic">Máquina CONVÉRTICA</span></h2>
-          <p class="section-desc">Por que 85% dos sites corporativos perdem vendas enquanto nossos clientes fecham contratos todos os dias.</p>
-        </div>
-
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Pilar Estratégico</th>
-                <th>Sites Comuns de Mercado</th>
-                <th class="col-highlight">Máquina de Vendas CONVÉRTICA</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Tecnologia &amp; Código</strong></td>
-                <td class="col-standard">WordPress e construtores pesados cheios de plugins lentos.</td>
-                <td class="col-highlight">Front-end nativo puro (HTML5/CSS3/JS), ultrarrápido e seguro.</td>
-              </tr>
-              <tr>
-                <td><strong>Tempo de Resposta</strong></td>
-                <td class="col-standard">4 a 8 segundos. Mais de 60% dos visitantes abandonam a página.</td>
-                <td class="col-highlight">Abaixo de 0.8s. Abertura instantânea em 4G, 5G e desktop.</td>
-              </tr>
-              <tr>
-                <td><strong>Comunicação &amp; Copy</strong></td>
-                <td class="col-standard">Textos genéricos e clichês institucionais que não vendem nada.</td>
-                <td class="col-highlight">Neurocopywriting persuasivo focado na tomada de decisão do cliente.</td>
-              </tr>
-              <tr>
-                <td><strong>Rotas de Contato</strong></td>
-                <td class="col-standard">Links quebrados e formulários longos que geram atrito.</td>
-                <td class="col-highlight">Caminhos em 1 clique direto para WhatsApp corporativo e CRM.</td>
-              </tr>
-              <tr>
-                <td><strong>Retorno Comercial</strong></td>
-                <td class="col-standard">Custo passivo que não traz novas demandas.</td>
-                <td class="col-highlight">Ativo comercial que gera reuniões e se paga no primeiro mês.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         5. O MÉTODO CONVÉRTICA: 5 PILARES CIRÚRGICOS
-         ======================================================================== -->
-    <section class="services-section" id="metodo">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="badge-eyebrow">Engenharia Reversa de Conversão</div>
-          <h2 class="section-title">Os 5 Pilares de <span class="editorial-italic">Alta Tração</span></h2>
-          <p class="section-desc">Cada detalhe da sua interface é desenhado para prender a atenção e converter visitantes em negócios.</p>
-        </div>
-
-        <div class="services-grid">
-          
-          <article class="service-card">
-            <div class="service-num">01 / ENGENHARIA DE ATENÇÃO</div>
-            <h3 class="service-title">Retenção nos 5 Segundos Decisivos</h3>
-            <p class="service-desc">Direção de arte cinematográfica e hierarquia visual que eliminam a dispersão e impõem autoridade imediata.</p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-num">02 / VELOCIDADE EXTREMA</div>
-            <h3 class="service-title">Performance Sub-segundo</h3>
-            <p class="service-desc">Pontuação máxima nas métricas do Google PageSpeed, barateando seus anúncios e maximizando o tráfego pago.</p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-num">03 / NEUROCOPYWRITING</div>
-            <h3 class="service-title">Persuasão Direta ao Ponto</h3>
-            <p class="service-desc">Mensagens curtas, fortes e sem rodeios que quebram o ceticismo do decisor e conduzem à solicitação de proposta.</p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-num">04 / FLUXOS SEM ATRITO</div>
-            <h3 class="service-title">Rotas Rápidas de Fechamento</h3>
-            <p class="service-desc">Integração nativa com WhatsApp, RD Station, HubSpot e formulários simplificados que capturam o lead na hora.</p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-num">05 / GOVERNANÇA DE ELITE</div>
-            <h3 class="service-title">Qualidade Blindada em 8 Etapas</h3>
-            <p class="service-desc">Testes rigorosos de acessibilidade WCAG AA, compatibilidade em todos os smartphones e entrega com garantia total.</p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         6. SOLUÇÕES & FORMATOS DE CONTRATAÇÃO
-         ======================================================================== -->
-    <section class="services-section" id="solucoes" style="background: rgba(8, 16, 38, 0.45); border-top: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="badge-eyebrow">Modelos de Entrega</div>
-          <h2 class="section-title">Formatos Estruturados para o <span class="editorial-italic">Seu Momento</span></h2>
-          <p class="section-desc">Seja para acelerar vendas imediatas ou construir autoridade corporativa inabalável.</p>
-        </div>
-
-        <div class="services-grid">
-          
-          <div class="service-card">
-            <div class="service-num">FORMATO A — ACELERAÇÃO</div>
-            <h3 class="service-title">Landing Page de Alta Conversão</h3>
-            <p class="service-desc">Projetada especificamente para campanhas no Google e Meta Ads. Foco total em captação de leads qualificados. Entrega ágil em 7 a 14 dias úteis.</p>
-          </div>
-
-          <div class="service-card">
-            <div class="service-num">FORMATO B — AUTORIDADE</div>
-            <h3 class="service-title">Website Institucional Corporativo</h3>
-            <p class="service-desc">Para empresas, indústrias e escritórios de alto padrão que necessitam de presença imponente para vencer licitações e contratos de alto valor.</p>
-          </div>
-
-          <div class="service-card">
-            <div class="service-num">FORMATO C — OTIMIZAÇÃO</div>
-            <h3 class="service-title">Redesign &amp; Reengenharia Técnica</h3>
-            <p class="service-desc">Reconstrução completa de sites legados obsoletos. Migração para código nativo ultrarrápido sem perder a autoridade do seu domínio.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         7. RESULTADOS & PROVA SOCIAL CONCISA
-         ======================================================================== -->
-    <section class="services-section" id="resultados">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="badge-eyebrow">Casos Reais</div>
-          <h2 class="section-title">Empresas que Escolheram <span class="editorial-italic">Vender Mais</span></h2>
-          <p class="section-desc">Depoimentos diretos de quem substituiu sites genéricos pela engenharia CONVÉRTICA.</p>
-        </div>
-
-        <div class="services-grid">
-          
-          <div class="service-card">
-            <p class="service-desc" style="font-style: italic; margin-bottom: 2rem; color: var(--text-primary);">
-              "Nosso volume de pedidos de cotação subiu mais de 200% logo no primeiro mês. O site responde instantaneamente no celular dos clientes."
-            </p>
-            <strong style="color: #FFFFFF; font-size: 1.5rem;">Carlos Eduardo M.</strong>
-            <div style="font-size: 1.25rem; color: var(--accent-cyan); font-family: var(--font-mono);">Diretor Comercial — B2B Manufatura</div>
-          </div>
-
-          <div class="service-card">
-            <p class="service-desc" style="font-style: italic; margin-bottom: 2rem; color: var(--text-primary);">
-              "A nova página colocou o escritório em outro patamar de percepção no mercado. Fechamos contratos maiores com clientes muito mais qualificados."
-            </p>
-            <strong style="color: #FFFFFF; font-size: 1.5rem;">Dr. Marcos Vinicius</strong>
-            <div style="font-size: 1.25rem; color: var(--accent-cyan); font-family: var(--font-mono);">Sócio Titular — Advocacia Empresarial</div>
-          </div>
-
-          <div class="service-card">
-            <p class="service-desc" style="font-style: italic; margin-bottom: 2rem; color: var(--text-primary);">
-              "O custo por lead qualificado caiu pela metade nas nossas campanhas de Google Ads. É uma máquina de vendas real."
-            </p>
-            <strong style="color: #FFFFFF; font-size: 1.5rem;">Juliana F.</strong>
-            <div style="font-size: 1.25rem; color: var(--accent-cyan); font-family: var(--font-mono);">Head de Growth — Soluções Corporativas</div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         8. FAQ ESTRATÉGICO — RESPOSTAS CURTAS QUE ELIMINAM OBJEÇÕES
-         ======================================================================== -->
-    <section class="services-section" id="faq" style="border-top: 1px solid rgba(255, 255, 255, 0.06);">
-      <div class="container">
-        
-        <div class="section-header">
-          <div class="badge-eyebrow">Tire Suas Dúvidas</div>
-          <h2 class="section-title">Perguntas <span class="editorial-italic">Frequentes</span></h2>
-          <p class="section-desc">Transparência total sobre prazos, tecnologia e garantias de entrega.</p>
-        </div>
-
-        <div class="faq-list">
-          
-          <div class="faq-item">
-            <h3 class="faq-question">1. Por que não contratar um freelancer comum ou usar Wix/Elementor?</h3>
-            <p class="faq-answer">Construtores geram código pesado que torna o site lento, prejudica seu posicionamento no Google e encarece seus anúncios. Entregamos front-end nativo puro com neurocopywriting profissional que se paga no primeiro mês.</p>
-          </div>
-
-          <div class="faq-item">
-            <h3 class="faq-question">2. Quanto tempo leva a entrega completa do projeto?</h3>
-            <p class="faq-answer">Através da nossa esteira ágil em 8 etapas com governança técnica, entregamos sua landing page validada e pronta para vender entre 7 e 14 dias úteis, sem atrasos.</p>
-          </div>
-
-          <div class="faq-item">
-            <h3 class="faq-question">3. Eu mesmo consigo atualizar textos e informações depois?</h3>
-            <p class="faq-answer">Sim. Entregamos estruturas modulares e intuitivas onde contatos, imagens e textos podem ser ajustados rapidamente, sem risco de quebrar o layout nem a velocidade.</p>
-          </div>
-
-          <div class="faq-item">
-            <h3 class="faq-question">4. O site já vem integrado ao meu WhatsApp e CRM de vendas?</h3>
-            <p class="faq-answer">Sim. Todas as rotas de conversão são configuradas com mensagens personalizadas que já identificam a origem da campanha, integrando direto ao seu WhatsApp ou CRM.</p>
-          </div>
-
-          <div class="faq-item">
-            <h3 class="faq-question">5. Qual é a garantia de funcionamento e qualidade?</h3>
-            <p class="faq-answer">Todo projeto passa pelo nosso rigoroso protocolo Gatekeeper de Qualidade: testado em múltiplos aparelhos, nota máxima no Google PageSpeed e conformidade total com acessibilidade WCAG AA.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         9. O FECHAMENTO MAGNÉTICO — DUPLA ROTA DE CONVERSÃO
-         ======================================================================== -->
-    <section class="cta-section" id="diagnostico">
-      <div class="container">
-        <div class="cta-box">
-          
-          <div class="badge-eyebrow">Comece Hoje</div>
-          
-          <h2 class="cta-title">
-            Pronto para transformar seu site na sua <span class="editorial-italic">maior fonte de clientes</span>?
-          </h2>
-          
-          <p class="cta-subtitle">
-            Solicite um diagnóstico comercial gratuito. Analisamos sua presença digital e mostramos exatamente onde você está perdendo vendas hoje.
-          </p>
-
-          <!-- Formulário em 3 campos rápidos com touch targets >= 44x44px -->
-          <form class="conversion-form" onsubmit="event.preventDefault(); alert('Solicitação de diagnóstico recebida! Nosso estrategista entrará em contato via WhatsApp em até 24 horas.');">
-            <input type="text" class="form-input" placeholder="Nome do Decisor" required aria-label="Nome do Decisor">
-            <input type="tel" class="form-input" placeholder="WhatsApp Comercial (com DDD)" required aria-label="WhatsApp Comercial">
-            <input type="text" class="form-input" placeholder="Site Atual da Empresa (ou Nicho)" aria-label="Site Atual da Empresa">
-            <button type="submit" class="btn-primary form-submit">
-              Solicitar Meu Diagnóstico Gratuito ➔
-            </button>
-          </form>
-
-          <div>
-            <span style="font-size: 1.45rem; color: var(--text-secondary); display: block; margin-bottom: 0.6rem;">
-              Prefere falar direto com nosso arquiteto de conversão agora mesmo?
-            </span>
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+gostaria+de+solicitar+um+diagn%C3%B3stico+gratuito+para+o+meu+site+com+a+CONV%C3%89RTICA." 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="whatsapp-direct-link">
-              💬 Iniciar Conversa Expressa no WhatsApp
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-  </main>
+      <div class="label">Explorar Demanda</div>
+    </button>
+  </div>
 
   <!-- ========================================================================
-       10. FOOTER INSTITUCIONAL COM LOGOTIPO NATIVO
+       5. HERO SECTION IDENTICA AO NOOMO (O PODER DA ALTA CONVERSÃO)
        ======================================================================== -->
-  <footer class="footer-main">
-    <div class="container footer-content">
+  <div class="parent home-hero" id="heroStage">
+    <div class="hero-container">
       
-      <!-- LOGO NATIVO NO FOOTER -->
-      <div style="display: flex; align-items: center; gap: 1.4rem;">
-        <span class="brand-icon" aria-hidden="true">
-          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="footer_c_grad" x1="14" y1="58" x2="52" y2="6" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#00F2FE"/>
-                <stop offset="50%" stop-color="#4FACFE"/>
-                <stop offset="100%" stop-color="#8B5CF6"/>
-              </linearGradient>
-            </defs>
-            <path d="M50 18L32 6L14 17V47L32 58L50 47L42 42L32 48L22 42V22L32 16L42 22L50 18Z" 
-                  fill="url(#footer_c_grad)"/>
-            <circle cx="32" cy="32" r="4.5" fill="#FFFFFF" opacity="0.95"/>
-            <circle cx="32" cy="32" r="2" fill="#00F2FE"/>
-          </svg>
-        </span>
-        <div>
-          <span style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; letter-spacing: 0.12em; color: #FFFFFF;">
-            CONV<span style="background: linear-gradient(135deg, #00F2FE, #4FACFE); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">É</span>RTICA
-          </span>
-          <p style="font-size: 1.15rem; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.18em; margin-top: 0.2rem;">
-            WEB &amp; DEMAND ENGINE
-          </p>
-        </div>
-      </div>
+      <!-- H2 estilo Noomo: "The power of digital" -->
+      <h2 aria-label="O poder da alta conversão">
+        O poder <br>
+        <span>da alta</span> conversão
+      </h2>
 
-      <div style="text-align: right;">
-        <p style="color: var(--text-secondary); font-size: 1.35rem;">© 2026 CONVÉRTICA Web Engineering. Todos os direitos reservados.</p>
-        <p style="font-size: 1.15rem; color: var(--text-muted); margin-top: 0.4rem; letter-spacing: 0.04em;">
-          Código Semântico Nativo • Acessibilidade WCAG AA • Core Web Vitals 98+
+      <!-- H1 gigante de 19.5vw estilo Noomo: "storytelling" -> "convértica" -->
+      <h1 class="pointer-events-none" aria-label="convertica">
+        <span class="char char1">c</span><span class="char char2">o</span><span class="char char3">n</span><span class="char char4">v</span><span class="char char5">é</span><span class="char char6">r</span><span class="char char7">t</span><span class="char char8">i</span><span class="char char9">c</span><span class="char char10">a</span>
+      </h1>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       6. ESTÁGIOS DE STORYTELLING GUIADOS POR SCROLL (.animated-text)
+       ======================================================================== -->
+  <div class="story-stage" id="storyStage">
+
+    <!-- Capítulo 1 (Centro) -->
+    <div class="animated-text pos-center text-center" id="ch1">
+      <p class="text-sans-50">
+        Em um mercado onde a atenção<br>
+        é disputada a cada segundo,
+      </p>
+      <span class="text-line half" style="max-width: 320px;"></span>
+    </div>
+
+    <!-- Capítulo 2 (Direita) -->
+    <div class="animated-text pos-right text-right" id="ch2">
+      <p class="text-sans-50">
+        o que realmente guia sua empresa<br>
+        através da incerteza, da reinvenção<br>
+        e da <span class="text-serif-50">escala previsível?</span>
+      </p>
+      <span class="text-line dark" style="max-width: 400px; margin-right: 0;"></span>
+    </div>
+
+    <!-- Capítulo 3 (Centro) -->
+    <div class="animated-text pos-center text-center" id="ch3">
+      <p class="text-sans-50">
+        A demanda consistente<br>
+        <span class="text-serif-50">nasce da clareza.</span>
+      </p>
+      <span class="text-line half" style="max-width: 280px;"></span>
+    </div>
+
+    <!-- Capítulo 4 (Centro Dark / Fundo Escuro) -->
+    <div class="animated-text pos-center text-center" id="ch4">
+      <p class="text-sans-50" style="color: #ffffff;">
+        Os melhores sites<br>
+        não apenas informam.<br>
+        <span class="text-serif-66">Eles convidam a entrar.</span>
+      </p>
+      <span class="text-line half" style="max-width: 420px;"></span>
+    </div>
+
+    <!-- Capítulo 5 (Topo) -->
+    <div class="animated-text pos-top-center text-center" id="ch5">
+      <p class="text-sans-30">
+        Engenharia web é muito mais do que código ou design visual.
+      </p>
+    </div>
+
+    <!-- Capítulo 6 (Inferior) -->
+    <div class="animated-text pos-bottom-center text-center" id="ch6">
+      <p class="text-sans-50">
+        É como uma centelha<br>
+        <span class="text-serif-66">se torna um motor de vendas.</span>
+      </p>
+      <span class="text-line half" style="max-width: 480px;"></span>
+    </div>
+
+    <!-- Capítulo 7 (Inferior Centro) -->
+    <div class="animated-text pos-bottom-center text-center" id="ch7">
+      <p class="text-sans-50">
+        Conversão é o que você<br>
+        vê, sente, mede e <span class="text-serif-66">escala.</span>
+      </p>
+      <span class="text-line dark" style="max-width: 500px;"></span>
+    </div>
+
+    <!-- Capítulos 8 a 11 (Palavras Gigantes em Background estilo Noomo) -->
+    <div class="animated-text-big pos-center text-center" id="chBig1">
+      <p class="text-serif-200">
+        <i class="text-sans-30" style="font-style: normal; display: block; margin-bottom: -2rem; color: var(--color-brand-cyan);">é</i>
+        <span class="gradient-text">estratégia.</span>
+      </p>
+    </div>
+
+    <div class="animated-text-big pos-center text-center" id="chBig2">
+      <p class="text-serif-200 gradient-text">Velocidade.</p>
+    </div>
+
+    <div class="animated-text-big pos-center text-center" id="chBig3">
+      <p class="text-serif-200 gradient-text">Retenção.</p>
+    </div>
+
+    <div class="animated-text-big pos-center text-center" id="chBig4">
+      <p class="text-serif-200 gradient-text">Demanda.</p>
+    </div>
+
+    <!-- Capítulo 12 (Pergunta Central Superior) -->
+    <div class="animated-text pos-top-center text-center" id="ch12">
+      <p class="text-sans-26">
+        Como a conversão pode viver<br>
+        <span class="text-serif-66">no coração</span> da experiência?
+      </p>
+    </div>
+
+    <!-- Capítulos 13 a 16 (Os 4 Pilares Estratégicos nos Cantos Inferiores) -->
+    <!-- Pilar 1 (Direita) -->
+    <div class="animated-text pos-bottom-right" id="ch13">
+      <div class="pillar-box text-left">
+        <h3 class="text-sans-30">Comece com <span class="text-serif-50">clareza</span></h3>
+        <span class="text-line dark"></span>
+        <p class="text-sans-18 lines-text-gradient">
+          Saiba exatamente o que sua empresa quer comunicar.
+          Seja para lançar um produto ou gerar novas vendas,
+          a proposta de valor precisa ser cristalina.
         </p>
       </div>
+    </div>
 
+    <!-- Pilar 2 (Esquerda) -->
+    <div class="animated-text pos-bottom-left" id="ch14">
+      <div class="pillar-box text-right">
+        <h3 class="text-sans-30">Deixe a conversão <span class="text-serif-50">guiar o design</span></h3>
+        <span class="text-line dark"></span>
+        <p class="text-sans-18 lines-text-gradient-left">
+          Cada animação, interação e visual deve servir à tomada de decisão.
+          Se não ajuda a fechar negócios, não é necessário.
+        </p>
+      </div>
+    </div>
+
+    <!-- Pilar 3 (Direita) -->
+    <div class="animated-text pos-bottom-right" id="ch15">
+      <div class="pillar-box text-left">
+        <h3 class="text-sans-30">Performance <span class="text-serif-50">sub-segundo</span></h3>
+        <span class="text-line dark"></span>
+        <p class="text-sans-18 lines-text-gradient">
+          Carregamento em 0.4s. Anúncios mais baratos,
+          máxima nota no Google PageSpeed e taxa de retenção
+          de 98% nos primeiros segundos.
+        </p>
+      </div>
+    </div>
+
+    <!-- Pilar 4 (Esquerda) -->
+    <div class="animated-text pos-bottom-left" id="ch16">
+      <div class="pillar-box text-right">
+        <h3 class="text-sans-30">Rotas diretas <span class="text-serif-50">sem atrito</span></h3>
+        <span class="text-line dark"></span>
+        <p class="text-sans-18 lines-text-gradient-left">
+          Conexão instantânea em 1 clique para WhatsApp corporativo
+          e CRM de vendas. O decisor entra em contato na hora.
+        </p>
+      </div>
+    </div>
+
+    <!-- Capítulo 17 (Clímax de Transição) -->
+    <div class="animated-text pos-top-center text-center" id="ch17">
+      <p class="text-sans-50">
+        Onde visitantes<br>
+        <span class="text-serif-66">se tornam clientes fiéis.</span>
+      </p>
+      <span class="text-line half" style="max-width: 360px;"></span>
+    </div>
+
+  </div>
+
+  <!-- ========================================================================
+       7. FOOTER CINEMATOGRÁFICO NOOMO (ESTÁGIO FINAL)
+       ======================================================================== -->
+  <footer class="cinematic-footer" id="cinematicFooter">
+    <div></div>
+
+    <div class="footer-hero-center">
+      <p>
+        Permita que a CONVÉRTICA construa sua máquina de vendas do jeito que ela deve ser.
+      </p>
+
+      <div class="footer-logo-glow">
+        <svg width="84" height="84" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="foot_c_grad" x1="14" y1="58" x2="52" y2="6" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00F2FE"/>
+              <stop offset="50%" stop-color="#4FACFE"/>
+              <stop offset="100%" stop-color="#8B5CF6"/>
+            </linearGradient>
+          </defs>
+          <path d="M50 18L32 6L14 17V47L32 58L50 47L42 42L32 48L22 42V22L32 16L42 22L50 18Z" 
+                fill="url(#foot_c_grad)"/>
+          <circle cx="32" cy="32" r="4.5" fill="#FFFFFF"/>
+          <circle cx="32" cy="32" r="2" fill="#00F2FE"/>
+        </svg>
+      </div>
+
+      <a href="mailto:contato@convertica.com.br" class="footer-contact-link">
+        contato@convertica.com.br
+      </a>
+
+      <button type="button" class="simple-button cta-highlight" id="btnOpenModalFooter" style="margin-top: 3rem; height: 48px; padding: 0 3.2rem; font-size: 1.6rem;">
+        Agendar Diagnóstico Gratuito ➔
+      </button>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div>
+        <span>© 2026 CONVÉRTICA. Todos os direitos reservados.</span>
+      </div>
+      <div class="footer-social-links">
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
     </div>
   </footer>
 
-  <!-- Scripts de Movimento & Animação (Motion Lab) -->
+  <!-- ========================================================================
+       8. MODAL DE DIAGNÓSTICO RÁPIDO (INTEGRAÇÃO COMERCIAL)
+       ======================================================================== -->
+  <div class="modal-overlay" id="diagnosticModal">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="btnCloseModal" aria-label="Fechar Modal">✕</button>
+      
+      <h3 class="modal-title">Diagnóstico Comercial</h3>
+      <p class="modal-desc">
+        Descubra onde sua empresa está perdendo vendas hoje. Avaliação técnica e estratégica em até 24 horas.
+      </p>
+
+      <form class="modal-form" onsubmit="event.preventDefault(); alert('Solicitação recebida com sucesso! Entraremos em contato via WhatsApp.'); document.getElementById('diagnosticModal').classList.remove('open');">
+        <input type="text" class="modal-input" placeholder="Seu Nome Completo" required>
+        <input type="tel" class="modal-input" placeholder="WhatsApp Comercial (com DDD)" required>
+        <input type="text" class="modal-input" placeholder="Site Atual da Empresa (ou Nicho)">
+        <button type="submit" class="modal-btn">
+          Solicitar Meu Diagnóstico Gratuito ➔
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       9. TRACK VIRTUAL DE SCROLL SMOOTH (LENIS / SCROLLTRIGGER TRACK)
+       ======================================================================== -->
+  <div id="smooth-wrapper" style="position: absolute; top: 0; left: 0; width: 100%; pointer-events: none; z-index: -1;">
+    <div id="smooth-content">
+      <!-- 16000px de track virtual para orquestrar os 18 capítulos da Noomo -->
+      <div style="height: 16000px; width: 100%;"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       10. SCRIPTS LOCAIS (ZERO DEPENDÊNCIA EXTERNA)
+       ======================================================================== -->
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/three-scene.js"></script>
   <script src="js/vendor/lenis.min.js"></script>
   <script src="js/vendor/gsap.min.js"></script>
   <script src="js/vendor/ScrollTrigger.min.js"></script>
   <script src="js/motion.js"></script>
+
 </body>
 </html>
-

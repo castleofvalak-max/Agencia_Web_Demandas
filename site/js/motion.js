@@ -1,7 +1,6 @@
 /**
- * CONVÉRTICA — WEB & DEMAND ENGINE
- * Coreografia de Movimento de Elite (Motion Lab)
- * Baseado no Motor REA (Lenis Smooth Scroll + GSAP ScrollTrigger 60-120 FPS)
+ * CONVÉRTICA — ORQUESTRADOR DE MOVIMENTO (NOOMO REVERSE MOTION ENGINE)
+ * Controla Lenis Smooth Scroll, transições de capítulos do Storytelling e Áudio Web
  */
 
 (function () {
@@ -10,333 +9,260 @@
   // 1. VERIFICAÇÃO DE PREFERS-REDUCED-MOTION
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 2. REGISTRO DE PLUGINS GSAP
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-  }
+  // 2. ELEMENTOS DO DOM
+  const heroStage = document.getElementById('heroStage');
+  const scrollExplore = document.getElementById('scrollExplore');
+  const cinematicFooter = document.getElementById('cinematicFooter');
+
+  const chapters = [
+    { id: 'ch1', start: 0.04, end: 0.09 },
+    { id: 'ch2', start: 0.09, end: 0.15 },
+    { id: 'ch3', start: 0.15, end: 0.21 },
+    { id: 'ch4', start: 0.21, end: 0.27 },
+    { id: 'ch5', start: 0.27, end: 0.33 },
+    { id: 'ch6', start: 0.33, end: 0.39 },
+    { id: 'ch7', start: 0.39, end: 0.45 },
+    { id: 'chBig1', start: 0.45, end: 0.51 },
+    { id: 'chBig2', start: 0.51, end: 0.57 },
+    { id: 'chBig3', start: 0.57, end: 0.63 },
+    { id: 'chBig4', start: 0.63, end: 0.69 },
+    { id: 'ch12', start: 0.69, end: 0.74 },
+    { id: 'ch13', start: 0.74, end: 0.79 },
+    { id: 'ch14', start: 0.79, end: 0.84 },
+    { id: 'ch15', start: 0.84, end: 0.89 },
+    { id: 'ch16', start: 0.89, end: 0.94 },
+    { id: 'ch17', start: 0.94, end: 0.97 }
+  ];
+
+  const chapterElements = chapters.map(ch => ({
+    ...ch,
+    el: document.getElementById(ch.id)
+  }));
 
   // 3. INICIALIZAÇÃO DO LENIS SMOOTH SCROLL (60–120 FPS)
   let lenisInstance = null;
 
   function initLenis() {
-    if (prefersReducedMotion || typeof Lenis === 'undefined') {
-      console.log('[CONVÉRTICA Motion] Lenis desativado por prefers-reduced-motion ou ausência da lib.');
+    if (typeof Lenis === 'undefined') {
+      console.warn('[CONVÉRTICA Motion] Lenis não encontrado.');
       return;
     }
 
     lenisInstance = new Lenis({
-      duration: 1.2,
+      duration: 1.3,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Curva exponencial suave da Noomo
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 1.6,
-      infinite: false,
+      touchMultiplier: 1.8,
+      infinite: false
     });
 
-    // Sincronização estrita de frame rate entre Lenis e ScrollTrigger
-    lenisInstance.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenisInstance.raf(time * 1000);
+    lenisInstance.on('scroll', ({ scroll, limit }) => {
+      const progress = limit > 0 ? scroll / limit : 0;
+      onScrollUpdate(progress);
     });
 
-    gsap.ticker.lagSmoothing(0);
-
-    // Scroll suave inteligente para todas as âncoras internas
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId && targetId !== '#') {
-          const targetEl = document.querySelector(targetId);
-          if (targetEl) {
-            e.preventDefault();
-            lenisInstance.scrollTo(targetEl, {
-              offset: -70,
-              duration: 1.2,
-              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-            });
-          }
-        }
-      });
-    });
+    function raf(time) {
+      lenisInstance.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
     console.log('[CONVÉRTICA Motion] Lenis Smooth Scroll operando a 60–120 FPS.');
   }
 
-  // 4. ANIMAÇÕES GSAP SCROLLTRIGGER (REA TIMELINES)
-  function initAnimations() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-
-    if (prefersReducedMotion) {
-      // Apresentação estática imediata para acessibilidade total
-      gsap.set(['.hero-section *', '.metric-card', '.comparison-table tr', '.service-card', '.faq-item', '.cta-box'], {
-        opacity: 1,
-        y: 0,
-        filter: 'none'
-      });
-      return;
+  // 4. ATUALIZAÇÃO DO STORYTELLING E TRANSIÇÕES POR PROGRESSO DE SCROLL
+  function onScrollUpdate(p) {
+    // A) Enviar progresso para a Câmera 3D Three.js
+    if (typeof window.update3DCameraScroll === 'function') {
+      window.update3DCameraScroll(p);
     }
 
-    // A) REVELAÇÃO DA HERO SECTION (TIMELINE CINEMATOGRÁFICA)
-    const heroTl = gsap.timeline({
-      defaults: { ease: 'power3.out', duration: 0.9 }
-    });
+    // B) Transição do Hero Stage (p: 0.00 a 0.04)
+    if (heroStage) {
+      if (p <= 0.04) {
+        const heroAlpha = 1 - (p / 0.04);
+        heroStage.style.opacity = heroAlpha;
+        heroStage.style.transform = `translateY(${-p * 800}px)`;
+        heroStage.style.pointerEvents = heroAlpha > 0.1 ? 'auto' : 'none';
+      } else {
+        heroStage.style.opacity = 0;
+        heroStage.style.pointerEvents = 'none';
+      }
+    }
 
-    heroTl
-      .fromTo('.header-glass', 
-        { y: -30, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.7 }
-      )
-      .fromTo('.hero-section .badge-eyebrow',
-        { y: 20, opacity: 0, filter: 'blur(6px)' },
-        { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8 },
-        '-=0.4'
-      )
-      .fromTo('.hero-title',
-        { y: 35, opacity: 0, filter: 'blur(10px)', scale: 1.02 },
-        { y: 0, opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.1, ease: 'cubic-bezier(0.16, 1, 0.3, 1)' },
-        '-=0.6'
-      )
-      .fromTo('.hero-subtitle',
-        { y: 25, opacity: 0, filter: 'blur(6px)' },
-        { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.8 },
-        '-=0.7'
-      )
-      .fromTo('.hero-actions .btn-primary, .hero-actions .btn-secondary',
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.12, duration: 0.7 },
-        '-=0.5'
-      )
-      .fromTo('.micro-proofs .proof-item',
-        { y: 15, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.6 },
-        '-=0.4'
-      );
+    // C) Indicador Scroll to explore desaparece após 2% de rolagem
+    if (scrollExplore) {
+      scrollExplore.style.opacity = p > 0.02 ? 0 : 0.8;
+    }
 
-    // B) PAINEL DE MÉTRICAS COM CONTADOR ANIMADO
-    ScrollTrigger.create({
-      trigger: '.metrics-section',
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        gsap.fromTo('.metric-card',
-          { y: 35, opacity: 0, filter: 'blur(6px)' },
-          { y: 0, opacity: 1, filter: 'blur(0px)', stagger: 0.12, duration: 0.8, ease: 'power2.out' }
-        );
-
-        // Contador de demanda (+380%)
-        const demandCard = document.querySelector('.metric-card:nth-child(2) .metric-value');
-        if (demandCard) {
-          const obj = { val: 0 };
-          gsap.to(obj, {
-            val: 380,
-            duration: 2.2,
-            ease: 'power2.out',
-            onUpdate: () => {
-              demandCard.textContent = `+${Math.round(obj.val)}%`;
-            }
-          });
-        }
-
-        // Contador de retenção (98%)
-        const retentionCard = document.querySelector('.metric-card:nth-child(3) .metric-value');
-        if (retentionCard) {
-          const obj = { val: 0 };
-          gsap.to(obj, {
-            val: 98,
-            duration: 2.0,
-            ease: 'power2.out',
-            onUpdate: () => {
-              retentionCard.textContent = `${Math.round(obj.val)}%`;
-            }
-          });
-        }
+    // D) Transição de cada capítulo de Storytelling
+    chapterElements.forEach(ch => {
+      if (!ch.el) return;
+      if (p >= ch.start && p <= ch.end) {
+        // Cálculo de fade in e fade out dentro do intervalo
+        const mid = (ch.start + ch.end) / 2;
+        const halfSpan = (ch.end - ch.start) / 2;
+        const dist = Math.abs(p - mid);
+        const factor = Math.max(0, 1 - (dist / halfSpan));
+        // Efeito sutil de elevação e desfoque
+        ch.el.style.display = 'block';
+        ch.el.style.opacity = factor;
+        ch.el.style.filter = `blur(${(1 - factor) * 8}px)`;
+        ch.el.style.transform = `translateY(${(1 - factor) * 20}px)`;
+      } else {
+        ch.el.style.display = 'none';
+        ch.el.style.opacity = 0;
       }
     });
 
-    // C) MATRIZ COMPARATIVA (FADE-UP STAGGERED)
-    gsap.fromTo('.comparison-table tbody tr',
-      { opacity: 0, x: -20 },
-      {
-        opacity: 1,
-        x: 0,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.comparison-table-wrapper',
-          start: 'top 80%',
-          once: true
-        }
+    // E) Transição do Footer Cinematográfico (p: 0.97 a 1.00)
+    if (cinematicFooter) {
+      if (p >= 0.97) {
+        cinematicFooter.classList.add('active');
+        const footAlpha = (p - 0.97) / 0.03;
+        cinematicFooter.style.opacity = footAlpha;
+      } else {
+        cinematicFooter.classList.remove('active');
+        cinematicFooter.style.opacity = 0;
       }
-    );
-
-    // D) OS 5 PILARES DE CONVERSÃO (STAGGER ELEVATION)
-    gsap.fromTo('#metodo .service-card',
-      { y: 40, opacity: 0, filter: 'blur(6px)' },
-      {
-        y: 0,
-        opacity: 1,
-        filter: 'blur(0px)',
-        stagger: 0.14,
-        duration: 0.85,
-        ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
-        scrollTrigger: {
-          trigger: '#metodo .services-grid',
-          start: 'top 82%',
-          once: true
-        }
-      }
-    );
-
-    // E) MODELOS DE SOLUÇÕES (FORMATOS A, B, C)
-    gsap.fromTo('#solucoes .service-card',
-      { y: 35, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#solucoes .services-grid',
-          start: 'top 80%',
-          once: true
-        }
-      }
-    );
-
-    // F) DEPOIMENTOS & CASOS DE SUCESSO
-    gsap.fromTo('#resultados .service-card',
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#resultados .services-grid',
-          start: 'top 80%',
-          once: true
-        }
-      }
-    );
-
-    // G) FAQ ESTRATÉGICO
-    gsap.fromTo('.faq-item',
-      { y: 25, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.7,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.faq-list',
-          start: 'top 85%',
-          once: true
-        }
-      }
-    );
-
-    // H) FECHAMENTO MAGNÉTICO & FORMULÁRIO
-    gsap.fromTo('.cta-box',
-      { y: 45, opacity: 0, scale: 0.98, filter: 'blur(8px)' },
-      {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        filter: 'blur(0px)',
-        duration: 1.0,
-        ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
-        scrollTrigger: {
-          trigger: '.cta-section',
-          start: 'top 75%',
-          once: true
-        }
-      }
-    );
+    }
   }
 
-  // 5. AMBIENT CURSOR GLOW (DESKTOP INTERACTIVE LANTERN)
-  function initAmbientGlow() {
-    if (window.innerWidth < 992 || prefersReducedMotion) return;
+  // 5. NAVEGAÇÃO SUAVE DE ÂNCORAS DO MENU
+  const btnMetodo = document.getElementById('btnNavMetodo');
+  const btnPilares = document.getElementById('btnNavPilares');
 
-    const ambientLantern = document.createElement('div');
-    ambientLantern.className = 'ambient-lantern';
-    ambientLantern.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 450px;
-      height: 450px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 242, 254, 0.06) 0%, rgba(139, 92, 246, 0.03) 40%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      transform: translate(-50%, -50%);
-      will-change: transform;
-      transition: opacity 0.4s ease;
-      opacity: 0;
-    `;
-    document.body.appendChild(ambientLantern);
+  if (btnMetodo) {
+    btnMetodo.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (lenisInstance) {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        lenisInstance.scrollTo(total * 0.45, { duration: 1.5 });
+      }
+    });
+  }
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let isVisible = false;
+  if (btnPilares) {
+    btnPilares.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (lenisInstance) {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        lenisInstance.scrollTo(total * 0.74, { duration: 1.5 });
+      }
+    });
+  }
+
+  // 6. CURSOR LIQUID GLASS INTERATIVO
+  const cursorEl = document.getElementById('liquidGlassCursor');
+  if (cursorEl && window.innerWidth >= 1024) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let curX = mouseX;
+    let curY = mouseY;
 
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      if (!isVisible) {
-        isVisible = true;
-        ambientLantern.style.opacity = '1';
-      }
     });
 
-    function renderLantern() {
-      // Interpolação linear suave (LERP) a 60 FPS
-      currentX += (mouseX - currentX) * 0.12;
-      currentY += (mouseY - currentY) * 0.12;
-      ambientLantern.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(renderLantern);
+    function renderCursor() {
+      curX += (mouseX - curX) * 0.16;
+      curY += (mouseY - curY) * 0.16;
+      cursorEl.style.left = `${curX}px`;
+      cursorEl.style.top = `${curY}px`;
+      requestAnimationFrame(renderCursor);
     }
-    requestAnimationFrame(renderLantern);
+    renderCursor();
   }
 
-  // 6. GESTÃO DE CICLO DE VIDA & ANTI-LEAK
-  function setupLifecycle() {
-    // Pausar animações pesadas e RAF quando a aba estiver em segundo plano
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        if (lenisInstance) lenisInstance.stop();
-      } else {
-        if (lenisInstance) lenisInstance.start();
-      }
-    });
+  // 7. SINTETIZADOR DE ÁUDIO WEB PARA O BOTÃO EQUALIZADOR
+  const soundBtn = document.getElementById('soundBtn');
+  let audioCtx = null;
+  let isSoundActive = false;
+  let ambientOsc1 = null;
+  let ambientOsc2 = null;
+  let ambientGain = null;
 
-    // Cleanup global caso a página seja desmontada/recarregada
-    window.addEventListener('beforeunload', () => {
-      if (lenisInstance) {
-        lenisInstance.destroy();
-        lenisInstance = null;
+  function toggleSound() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    if (!isSoundActive) {
+      // Iniciar acorde atmosférico sutil (432Hz e 540Hz)
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
       }
-      if (typeof ScrollTrigger !== 'undefined') {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+      ambientGain = audioCtx.createGain();
+      ambientGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      ambientGain.gain.exponentialRampToValueAtTime(0.04, audioCtx.currentTime + 1.2);
+      ambientGain.connect(audioCtx.destination);
+
+      ambientOsc1 = audioCtx.createOscillator();
+      ambientOsc1.type = 'sine';
+      ambientOsc1.frequency.setValueAtTime(432, audioCtx.currentTime);
+      ambientOsc1.connect(ambientGain);
+      ambientOsc1.start();
+
+      ambientOsc2 = audioCtx.createOscillator();
+      ambientOsc2.type = 'sine';
+      ambientOsc2.frequency.setValueAtTime(540, audioCtx.currentTime);
+      ambientOsc2.connect(ambientGain);
+      ambientOsc2.start();
+
+      isSoundActive = true;
+      if (soundBtn) soundBtn.classList.add('active');
+    } else {
+      if (ambientGain) {
+        ambientGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
+        setTimeout(() => {
+          if (ambientOsc1) ambientOsc1.stop();
+          if (ambientOsc2) ambientOsc2.stop();
+        }, 500);
       }
+      isSoundActive = false;
+      if (soundBtn) soundBtn.classList.remove('active');
+    }
+  }
+
+  if (soundBtn) {
+    soundBtn.addEventListener('click', toggleSound);
+  }
+
+  // 8. MODAL DE DIAGNÓSTICO RÁPIDO
+  const modal = document.getElementById('diagnosticModal');
+  const btnOpenHeader = document.getElementById('btnOpenModalHeader');
+  const btnOpenBottom = document.getElementById('btnOpenModalBottom');
+  const btnOpenFooter = document.getElementById('btnOpenModalFooter');
+  const btnClose = document.getElementById('btnCloseModal');
+
+  function openModal() {
+    if (modal) modal.classList.add('open');
+  }
+
+  function closeModal() {
+    if (modal) modal.classList.remove('open');
+  }
+
+  [btnOpenHeader, btnOpenBottom, btnOpenFooter].forEach(btn => {
+    if (btn) btn.addEventListener('click', openModal);
+  });
+
+  if (btnClose) btnClose.addEventListener('click', closeModal);
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
     });
   }
 
-  // 7. BOOTSTRAP DO MOTION LAB
+  // 9. INICIALIZAÇÃO
   function init() {
     initLenis();
-    initAnimations();
-    initAmbientGlow();
-    setupLifecycle();
+    onScrollUpdate(0);
   }
 
   if (document.readyState === 'loading') {
